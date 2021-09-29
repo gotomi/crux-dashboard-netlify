@@ -23,7 +23,7 @@ exports.handler = async (event) => {
 const params = new URLSearchParams(event.body);
 const urls = params.getAll('url').map(url => prependHttp(url));
 
-  const API_KEY = $PSIKUS;
+  const API_KEY = process.env.PSIKUS;
 
   
   const queryParams = {
