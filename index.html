@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Crux data</title>
+</head>
+
+<body>
+  <main>
+    <h1>get Crux data</h1>
+    <form action="/.netlify/functions/kruk" method="POST" id="form">
+      <label for="query">Search</label>
+      <input type="text" id="query1" name="url" />
+      <input type="text" id="query2" name="url" />
+      <input type="text" id="query3" name="url" />
+      <button>Submit</button>
+    </form>
+
+    <script>
+      const formElement = document.getElementById('form');
+
+
+      formElement.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const data = new URLSearchParams(new FormData(formElement));
+        (async () => {
+          const rawResponse = await fetch('/.netlify/functions/kruk', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: data
+          });
+          const content = await rawResponse.json();
+
+          document.querySelector('#resp').innerHTML = JSON.stringify(content);
+        })();
+      })
+    </script>
+    <div id="resp"></div>
+  </main>
+</body>
+
+</html>
