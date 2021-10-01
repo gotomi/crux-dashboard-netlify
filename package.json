@@ -1,18 +1,21 @@
 {
   "name": "crux-netlify",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@astrojs/renderer-svelte": "^0.1.2",
+    "astro": "^0.20.8"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:gotomi/crux-netlify.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "kruk": "^0.2.4"
   }
