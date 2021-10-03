@@ -21,7 +21,7 @@ function prependHttp(url, {https = true} = {}) {
 exports.handler = async (event) => {
 
 const params = new URLSearchParams(event.body);
-const urls = params.getAll('url').map(url => prependHttp(url));
+const urls = params.getAll('url').filter(item => !!item).map(url => prependHttp(url));
 
   const API_KEY = process.env.PSIKUS;
 

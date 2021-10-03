@@ -7,7 +7,7 @@ import CruxApp from '../components/CruxApp.svelte';
 // You can write any JavaScript/TypeScript that you'd like here.
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
-let title = 'My Astro Site';
+let title = 'Crux Dashboard';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -18,23 +18,20 @@ let title = 'My Astro Site';
     <meta name="viewport" content="width=device-width">
     <title>{title}</title>
 
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     
     <link rel="stylesheet" href="/style/global.css">
-    <link rel="stylesheet" href="/style/home.css">
 
     <style>
         header {
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-            max-width: min(100%, 68ch);
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
     <main>
         <header>
+        <h1>{title}</h1>
         </header>
         <CruxApp client:visible />
     </main>

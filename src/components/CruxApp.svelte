@@ -39,14 +39,14 @@
       <li><input name={item} value="" placeholder="url" /></li>
     {/each}
     <li><button on:click|preventDefault={addItem}>+</button></li>
-    <li><input type="submit" /></li>
+    <li><input type="submit" value="get CrUX data"/></li>
   </ul>
 </form>
 
 <div class="response">
   {#if isData}
     {#await promise}
-      <p>...waiting</p>
+      <p class="loader">...waiting</p>
     {:then content}
       <Header data={content} />
       <UrlsByMetric data={content} />
@@ -62,8 +62,22 @@
   }
   ul, li{
     list-style: none;
+    padding: 0;
+    margin: 0;
   }
   li {
     display: inline-block;
+  }
+
+  form {
+    padding: 0 0 20px 0;
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #aaa;
+  }
+  .response {
+    min-height: 300px;
+  }
+  .loader{
+    margin: 50px auto;
   }
 </style>
