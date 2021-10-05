@@ -1,6 +1,7 @@
 <script>
   import Header from "./Header.svelte";
   import UrlsByMetric from "./UrlsByMetric.svelte";
+  import MetricsByUrl from "./MetricsByUrl.svelte"
   let isData = false;
   let items = ["url", "url"];
   $: l = items.length;
@@ -63,6 +64,7 @@
     {:then content}
       <Header data={content} />
       <UrlsByMetric data={content} />
+      <MetricsByUrl data={content}/>
     {:catch error}
       <p style="color: red">{error.message}</p>
     {/await}
