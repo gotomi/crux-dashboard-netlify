@@ -21,6 +21,8 @@ function prependHttp(url, {https = true} = {}) {
 exports.handler = async (event) => {
 
 const params = new URLSearchParams(event.body);
+const checkOrigin = !!params.get('checkOrigin');
+const formFactor = params.get('formFactor');
 const urls = params.getAll('url').filter(item => !!item).map(url => prependHttp(url));
 
   const API_KEY = process.env.PSIKUS;
@@ -28,8 +30,8 @@ const urls = params.getAll('url').filter(item => !!item).map(url => prependHttp(
   
   const queryParams = {
     effectiveConnectionType: '',
-    formFactor: 'PHONE',
-    checkOrigin: true
+    formFactor: formFactor,
+    checkOrigin: checkOrigin
   }
   
   const cruxData = await getReports(urls, API_KEY, queryParams);

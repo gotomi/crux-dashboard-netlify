@@ -8,6 +8,8 @@
     items[l] = "url";
   }
 
+  const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
+
   async function getCrux(data) {
     const res = await fetch("/.netlify/functions/kruk", {
       method: "POST",
@@ -19,11 +21,11 @@
     });
     const content = await res.json();
     if (res.ok) {
-      isData =true;
-			return content;
-		} else {
-			throw new Error(content);
-		}
+      isData = true;
+      return content;
+    } else {
+      throw new Error(content);
+    }
   }
   let promise;
   function onSubmit(e) {
@@ -32,14 +34,25 @@
   }
 </script>
 
-
 <form on:submit|preventDefault={onSubmit}>
   <ul>
+    <li><input type="checkbox" name="checkOrigin" />origin</li>
+    <li>
+      <select name="formFactor">
+        {#each formFactorValues as formFactor}
+          {#if formFactor === "PHONE"}
+            <option value={formFactor} selected>{formFactor}</option>
+          {:else}
+            <option value={formFactor}>{formFactor}</option>
+          {/if}
+        {/each}
+      </select>
+    </li>
     {#each items as item}
       <li><input name={item} value="" placeholder="url" /></li>
     {/each}
     <li><button on:click|preventDefault={addItem}>+</button></li>
-    <li><input type="submit" value="get CrUX data"/></li>
+    <li><input type="submit" value="get CrUX data" /></li>
   </ul>
 </form>
 
@@ -57,10 +70,11 @@
 </div>
 
 <style>
-  ul{
+  ul {
     display: block;
   }
-  ul, li{
+  ul,
+  li {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -77,7 +91,7 @@
   .response {
     min-height: 300px;
   }
-  .loader{
+  .loader {
     margin: 50px auto;
   }
 </style>
