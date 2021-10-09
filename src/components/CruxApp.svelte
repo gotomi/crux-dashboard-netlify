@@ -22,8 +22,8 @@
     });
     const content = await res.json();
     if (res.ok) {
-      isData = true;
-      return content;
+      isData = (content.params) ? true : false;
+      return content
     } else {
       throw new Error(content);
     }

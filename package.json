@@ -17,6 +17,6 @@
     "url": "git@github.com:gotomi/crux-netlify.git"
   },
   "dependencies": {
-    "kruk": "^0.2.4"
+    "kruk": "^0.2.5"
   }
 }
