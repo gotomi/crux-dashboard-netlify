@@ -37,7 +37,7 @@
 
 <form on:submit|preventDefault={onSubmit}>
   <ul>
-    <li><input type="checkbox" name="checkOrigin" />origin</li>
+    <li><label><input type="checkbox" name="checkOrigin" />origin</label></li>
     <li>
       <select name="formFactor">
         {#each formFactorValues as formFactor}
@@ -52,7 +52,7 @@
     {#each items as item}
       <li><input name={item} value="" placeholder="url" /></li>
     {/each}
-    <li><button on:click|preventDefault={addItem}>+</button></li>
+    <li><button on:click|preventDefault={addItem}>add url</button></li>
     <li><input type="submit" value="get CrUX data" /></li>
   </ul>
 </form>
