@@ -1,2 +1,2 @@
 # crux dashboard netlify
-kruk.netlify.app
+https://kruk.netlify.app
