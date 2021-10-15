@@ -7,3 +7,15 @@ It uses [netlify functions](https://www.netlify.com/products/functions/) and [kr
 
 
 Demo site: https://kruk.netlify.app
+
+
+## Requirements
+	
+- Current version of Node.js
+- Chrome UX Report [Api Key] (https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey)
+- [Netlify CLI](https://docs.netlify.com/cli/get-started/)
+
+## Installation
+  npm install netlify-cli -g
+	npm install
+  ntl dev
