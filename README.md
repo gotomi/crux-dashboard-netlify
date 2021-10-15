@@ -16,6 +16,6 @@ Demo site: https://kruk.netlify.app
 - [Netlify CLI](https://docs.netlify.com/cli/get-started/)
 
 ## Installation
-  npm install netlify-cli -g
-	npm install
-  ntl dev
+- npm install netlify-cli -g
+- npm install
+- ntl dev
