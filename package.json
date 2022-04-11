@@ -9,15 +9,16 @@
         "preview": "astro preview"
     },
     "devDependencies": {
-        "@astrojs/renderer-svelte": "^0.4.0",
-        "astro": "^0.24.0",
-        "postcss-load-config": "^3.1.1"
+        "@astrojs/netlify": "^0.2.1",
+        "@astrojs/svelte": "^0.1.1",
+        "astro": "^1.0.0-beta.7",
+        "kruk": "^0.2.6"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:gotomi/crux-netlify.git"
     },
     "dependencies": {
-        "kruk": "^0.2.5"
+
     }
 }
