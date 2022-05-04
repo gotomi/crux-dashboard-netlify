@@ -12,7 +12,7 @@
         "@astrojs/netlify": "^0.2.1",
         "@astrojs/svelte": "^0.1.1",
         "astro": "^1.0.0-beta.24",
-        "kruk": "^0.2.7"
+        "kruk": "^0.2.8"
     },
     "repository": {
         "type": "git",
