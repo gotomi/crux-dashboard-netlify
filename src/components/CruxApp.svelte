@@ -1,9 +1,11 @@
 <script>
   import Header from "./Header.svelte";
   import UrlsByMetric from "./UrlsByMetric.svelte";
-  import MetricsByUrl from "./MetricsByUrl.svelte"
+  import MetricsByUrl from "./MetricsByUrl.svelte";
   let isData = false;
-  let items = ["url", "url"];
+  export let content;
+  export let params;
+  let items = ["url"];
   $: l = items.length;
   function addItem() {
     items[l] = "url";
@@ -11,43 +13,50 @@
 
   const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
 
-  async function getCrux(data) {
-    const res = await fetch("/.netlify/functions/kruk", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: data,
-    });
-    const content = await res.json();
-    if (res.ok) {
-      isData = (content.params) ? true : false;
-      return content
-    } else {
-      throw new Error(content);
-    }
-  }
-  let promise;
+
   function onSubmit(e) {
-    const data = new URLSearchParams(new FormData(e.target));
-    promise = getCrux(data);
+    const data = new FormData(e.target);
+
+    const origin = !!data.get("checkOrigin") ? "origin" : "url";
+    const formFactor = data.get("formFactor");
+    const urls = data.getAll("url").join(",");
+
+    location.href = `/crux/${origin}/${formFactor}/{${urls}}`;
   }
 </script>
 
 <form on:submit|preventDefault={onSubmit}>
   <ul>
-    <li><label><input type="checkbox" name="checkOrigin" />origin</label></li>
     <li>
-      <select name="formFactor">
-        {#each formFactorValues as formFactor}
-          {#if formFactor === "PHONE"}
-            <option value={formFactor} selected>{formFactor}</option>
-          {:else}
-            <option value={formFactor}>{formFactor}</option>
-          {/if}
-        {/each}
-      </select>
+      <label
+        ><input
+          type="radio"
+          name="checkOrigin"
+          value="true"
+          checked
+        />origin</label
+      >
+    </li>
+    <li>
+      <label><input type="radio" name="checkOrigin" value="false" />url</label>
+    </li>
+    <li>
+      {#each formFactorValues as formFactor}
+        {#if formFactor === "PHONE"}
+          <input
+            type="radio"
+            name="formFactor"
+            value={formFactor}
+            checked
+          />{formFactor}
+        {:else}
+          <input
+            type="radio"
+            name="formFactor"
+            value={formFactor}
+          />{formFactor}
+        {/if}
+      {/each}
     </li>
     {#each items as item}
       <li><input name={item} value="" placeholder="url" /></li>
@@ -58,16 +67,11 @@
 </form>
 
 <div class="response">
-  {#if isData}
-    {#await promise}
-      <p class="loader">...waiting</p>
-    {:then content}
-      <Header data={content} />
-      <UrlsByMetric data={content} />
-      <MetricsByUrl data={content}/>
-    {:catch error}
-      <p style="color: red">{error.message}</p>
-    {/await}
+  {JSON.stringify(params, null, 2)}
+  {#if Object.keys(content).length > 0}
+    <Header data={content} />
+    <UrlsByMetric data={content} />
+    <MetricsByUrl data={content} />
   {/if}
 </div>
 

@@ -1,0 +1,75 @@
+---
+const { slug } = Astro.params;
+import CruxApp from '../../components/CruxApp.svelte';
+let content = {};
+const params = {};
+let qs = '';
+const urlParameters = (slug || '').split('/');
+
+if (slug) {
+    const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
+    const urlOrOriginValues = ["origin", "url"];
+
+    let urlOrOrigin = urlParameters[0];
+    urlOrOrigin = urlOrOriginValues.includes(urlOrOrigin) ? urlOrOrigin : "origin";
+
+    let formFactor = urlParameters[1];
+    formFactor = formFactorValues.includes(formFactor) ? formFactor : "ALL_FORM_FACTORS";
+
+    const firstBracket = slug.indexOf('{');
+    const urls = (firstBracket > -1) ? slug.substring(firstBracket + 1, slug.length - 1) : '';
+    
+    params.checkOrigin = urlOrOrigin === "origin";
+    params.formFactor = formFactor;
+    params.url = urls;
+    qs = Object.keys(params).map((key) => {
+        return `${key}=${params[key]}`;
+    }).join('&');
+}
+
+const url = `${Astro.url.origin}/api/kruk?${qs}`;
+
+
+
+const response = await fetch(url);
+try {
+    content = await response.json();
+} catch (e) {
+    console.log(e);
+}
+
+
+let title = 'Crux Dashboard';
+
+---
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{title}</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link rel="stylesheet" href="/style/global.css">
+
+
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>{title}
+            </h1>
+        </header>
+        <CruxApp content={content} params={params} client:visible />
+    </main>
+</body>
+
+</html>
+<style>
+    header {
+        margin: 15px 0;
+    }
+</style>
