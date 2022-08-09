@@ -11,14 +11,11 @@
     "devDependencies": {
         "@astrojs/netlify": "^0.5.0",
         "@astrojs/svelte": "^0.5.1",
-        "astro": "^1.0.0-rc.6",
+        "astro": "^1.0.0-rc.8",
         "kruk": "^0.2.10"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:gotomi/crux-netlify.git"
-    },
-    "dependencies": {
-
     }
 }
