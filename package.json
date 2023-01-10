@@ -9,10 +9,10 @@
         "preview": "astro preview"
     },
     "devDependencies": {
-        "@astrojs/netlify": "^1.0.0",
-        "@astrojs/svelte": "^1.0.0",
-        "astro": "^1.0.1",
-        "kruk": "^0.2.10"
+        "@astrojs/netlify": "^1.3.0",
+        "@astrojs/svelte": "^1.0.2",
+        "astro": "^1.9.1",
+        "kruk": "^0.3.0"
     },
     "repository": {
         "type": "git",
