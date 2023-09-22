@@ -1,7 +1,7 @@
 <script>
   import Header from "./Header.svelte";
   import UrlsByMetric from "./UrlsByMetric.svelte";
-  import MetricsByUrl from "./MetricsByUrl.svelte"
+  import MetricsByUrl from "./MetricsByUrl.svelte";
   let isData = false;
   let items = ["url", "url"];
   $: l = items.length;
@@ -22,8 +22,8 @@
     });
     const content = await res.json();
     if (res.ok) {
-      isData = (content.params) ? true : false;
-      return content
+      isData = content.params ? true : false;
+      return content;
     } else {
       throw new Error(content);
     }
@@ -64,7 +64,7 @@
     {:then content}
       <Header data={content} />
       <UrlsByMetric data={content} />
-      <MetricsByUrl data={content}/>
+      <MetricsByUrl data={content} />
     {:catch error}
       <p style="color: red">{error.message}</p>
     {/await}
@@ -73,7 +73,9 @@
 
 <style>
   ul {
-    display: block;
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
   ul,
   li {
@@ -82,7 +84,7 @@
     margin: 0;
   }
   li {
-    display: inline-block;
+    display: flex
   }
 
   form {
@@ -95,5 +97,10 @@
   }
   .loader {
     margin: 50px auto;
+  }
+  input,
+  select,
+  button {
+    padding: 4px 8px;
   }
 </style>
