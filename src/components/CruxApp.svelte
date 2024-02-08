@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import Header from "./Header.svelte";
   import UrlsByMetric from "./UrlsByMetric.svelte";
   import MetricsByUrl from "./MetricsByUrl.svelte";
@@ -10,6 +11,12 @@
   }
 
   const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
+  let promise;
+  onMount(async () => {
+    const url = new URL(location.href);
+    const data = url.searchParams;
+    promise = getCrux(data);
+  });
 
   async function getCrux(data) {
     const res = await fetch("/.netlify/functions/getCrux", {
@@ -28,10 +35,11 @@
       throw new Error(content);
     }
   }
-  let promise;
+
   function onSubmit(e) {
     const data = new URLSearchParams(new FormData(e.target));
-    promise = getCrux(data);
+    // promise = getCrux(data);
+    window.location.href = "/?" + data.toString();
   }
 </script>
 
