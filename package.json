@@ -9,13 +9,16 @@
         "preview": "astro preview"
     },
     "devDependencies": {
-        "@astrojs/netlify": "^3.0.3",
-        "@astrojs/svelte": "^4.0.3",
-        "astro": "^3.3.2",
+        "@astrojs/netlify": "^5.1.0",
+        "@astrojs/svelte": "^5.0.3",
+        "astro": "^4.3.5",
         "kruk": "^0.3.2"
     },
     "repository": {
         "type": "git",
         "url": "git@github.com:gotomi/crux-netlify.git"
+    },
+    "dependencies": {
+        "prepend-http": "^4.0.0"
     }
 }

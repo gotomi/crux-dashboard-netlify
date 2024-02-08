@@ -12,7 +12,7 @@
   const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
 
   async function getCrux(data) {
-    const res = await fetch("/.netlify/functions/kruk", {
+    const res = await fetch("/.netlify/functions/getCrux", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -84,7 +84,7 @@
     margin: 0;
   }
   li {
-    display: flex
+    display: flex;
   }
 
   form {
