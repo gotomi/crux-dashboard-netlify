@@ -3,18 +3,38 @@
   import Header from "./Header.svelte";
   import UrlsByMetric from "./UrlsByMetric.svelte";
   import MetricsByUrl from "./MetricsByUrl.svelte";
-  let isData = false;
-  let items = ["url", "url"];
-  $: l = items.length;
-  function addItem() {
-    items[l] = "url";
-  }
 
   const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
+
+  let isData = false;
   let promise;
+  const initialData = {
+    url: ["www.google.com"],
+    checkOrigin: true,
+    formFactor: "PHONE",
+  };
+
+  function addItem() {
+    const len = initialData.url.length;
+    initialData.url[len] = "";
+  }
+
+  function removeItem(i) {
+    initialData.url.splice(i, 1);
+    initialData.url = initialData.url;
+  }
+
   onMount(async () => {
-    const url = new URL(location.href);
-    const data = url.searchParams;
+    const data = new URL(location.href).searchParams;
+    const url = data.getAll("url");
+    const checkOrigin = !!data.get("checkOrigin");
+    const formFactor = data.get("formFactor");
+
+    if (url.length) {
+      initialData.url = url;
+      initialData.checkOrigin = checkOrigin;
+      initialData.formFactor = formFactor;
+    }
     promise = getCrux(data);
   });
 
@@ -45,11 +65,19 @@
 
 <form on:submit|preventDefault={onSubmit}>
   <ul>
-    <li><label><input type="checkbox" name="checkOrigin" />origin</label></li>
+    <li>
+      <label
+        ><input
+          type="checkbox"
+          name="checkOrigin"
+          checked={initialData.checkOrigin}
+        />origin</label
+      >
+    </li>
     <li>
       <select name="formFactor">
         {#each formFactorValues as formFactor}
-          {#if formFactor === "PHONE"}
+          {#if formFactor === initialData.formFactor}
             <option value={formFactor} selected>{formFactor}</option>
           {:else}
             <option value={formFactor}>{formFactor}</option>
@@ -57,10 +85,15 @@
         {/each}
       </select>
     </li>
-    {#each items as item}
-      <li><input name={item} value="" placeholder="url" /></li>
+    {#each initialData.url as item, i (i)}
+      <li>
+        <input name="url" value={item} placeholder="url" />
+        <span class="remove" on:click={() => removeItem(i)}>x</span>
+      </li>
     {/each}
     <li><button on:click|preventDefault={addItem}>add url</button></li>
+  </ul>
+  <ul>
     <li><input type="submit" value="get CrUX data" /></li>
   </ul>
 </form>
@@ -76,6 +109,8 @@
     {:catch error}
       <p style="color: red">{error.message}</p>
     {/await}
+  {:else}
+    <p class="loader">...waiting</p>
   {/if}
 </div>
 
@@ -84,6 +119,7 @@
     display: flex;
     gap: 8px;
     align-items: center;
+    flex-wrap: wrap;
   }
   ul,
   li {
@@ -93,12 +129,17 @@
   }
   li {
     display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   form {
-    padding: 0 0 20px 0;
-    margin: 0 0 20px 0;
-    border-bottom: 1px solid #aaa;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #eee;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   .response {
     min-height: 300px;
@@ -110,5 +151,18 @@
   select,
   button {
     padding: 4px 8px;
+    border: 1px solid #ddd;
+  }
+  button,
+  input[type="submit"] {
+    background-color: #ccc;
+  }
+  input[type="checkbox"] {
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+  .remove {
+    cursor: pointer;
+    font-weight: bold;
   }
 </style>
