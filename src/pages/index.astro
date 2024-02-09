@@ -1,39 +1,40 @@
 ---
 // Component Imports
 // You can import components from any supported Framework here!
-import CruxApp from '../components/CruxApp.svelte';
+import CruxApp from "../components/CruxApp.svelte";
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
-let title = 'Crux Dashboard';
+let title = "Crux Dashboard";
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
 
-   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    
-    <link rel="stylesheet" href="/style/global.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link rel="stylesheet" href="/style/global.css" />
 
     <style>
-        header {
-            margin: 15px 0;
-        }
+      header {
+        margin: 15px 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <header>
+      <header>
         <h1>{title}</h1>
-        </header>
-        <CruxApp client:visible />
+      </header>
+      <CruxApp client:visible />
     </main>
-</body>
+  </body>
 </html>
