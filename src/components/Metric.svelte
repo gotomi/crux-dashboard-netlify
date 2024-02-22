@@ -19,9 +19,11 @@
   {#if rankMap[post.rank]}
     <ul>
       {#each post.histogram as item, index}
-        <li class={rank[index]} style={"flex:" + item}>
-          <span>{item}%</span>
-        </li>
+        {#if item > 0}
+          <li class={rank[index]} style={"flex:" + item}>
+            <span>{item}%</span>
+          </li>
+        {/if}
       {/each}
     </ul>
   {:else}

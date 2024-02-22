@@ -6,13 +6,13 @@
 
   const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
 
-  let isData = false;
-  let promise;
   const initialData = {
-    url: ["www.google.com"],
+    url: [""],
     checkOrigin: true,
     formFactor: "PHONE",
   };
+
+  let promise = Promise.reject(new Error(""));
 
   function addItem() {
     const len = initialData.url.length;
@@ -34,8 +34,8 @@
       initialData.url = url;
       initialData.checkOrigin = checkOrigin;
       initialData.formFactor = formFactor;
+      promise = getCrux(data);
     }
-    promise = getCrux(data);
   });
 
   async function getCrux(data) {
@@ -49,7 +49,6 @@
     });
     const content = await res.json();
     if (res.ok) {
-      isData = content.params ? true : false;
       return content;
     } else {
       throw new Error(content);
@@ -58,7 +57,6 @@
 
   function onSubmit(e) {
     const data = new URLSearchParams(new FormData(e.target));
-    // promise = getCrux(data);
     window.location.href = "/?" + data.toString();
   }
 </script>
@@ -99,19 +97,15 @@
 </form>
 
 <div class="response">
-  {#if isData}
-    {#await promise}
-      <p class="loader">...waiting</p>
-    {:then content}
-      <Header data={content} />
-      <UrlsByMetric data={content} />
-      <MetricsByUrl data={content} />
-    {:catch error}
-      <p style="color: red">{error.message}</p>
-    {/await}
-  {:else}
+  {#await promise}
     <p class="loader">...waiting</p>
-  {/if}
+  {:then content}
+    <Header data={content} />
+    <UrlsByMetric data={content} />
+    <MetricsByUrl data={content} />
+  {:catch error}
+    <p style="color: red">{error.message}</p>
+  {/await}
 </div>
 
 <style>
