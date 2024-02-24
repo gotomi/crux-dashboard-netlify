@@ -7,8 +7,6 @@
     );
   }
 
-  const titleArr = ["allegro.pl", "allegrolokalnie.pl"];
-
   function allGoodPercent() {
     const minimal = {};
     data.metrics.forEach((item) => {
@@ -75,18 +73,16 @@
             <td class={cell.rank}>{cell.p75}</td>
           {:else}
             <td>
-              <img
-                src={imgIcon(cell.url)}
-                class="icon"
-                width="12"
-                height="12"
-                alt={cell.url}
-              />
-              {#if titleArr.includes(cell.url.split("/"))}
-                <strong title={cell.url}>{cell.url}</strong>
-              {:else}
+              <div class="url">
+                <img
+                  src={imgIcon(cell.url)}
+                  class="icon"
+                  width="12"
+                  height="12"
+                  alt={cell.url}
+                />
                 <span title={cell.url}>{cell.url}</span>
-              {/if}
+              </div>
               <div class="all-good">
                 <div style={"width:" + cell.minimal + "%"}>
                   {cell.minimal}%
@@ -144,9 +140,19 @@
     margin: 0 3px 0 0;
   }
 
-  span,
-  strong {
-    width: 200px;
+  @media (max-width: 1022px) {
+    .url {
+      max-width: 400px;
+    }
+  }
+  .url {
+    max-width: 160px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  span {
+    max-width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-align: left;
