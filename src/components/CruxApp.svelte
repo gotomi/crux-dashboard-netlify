@@ -4,6 +4,8 @@
   import UrlsByMetric from "./UrlsByMetric.svelte";
   import MetricsByUrl from "./MetricsByUrl.svelte";
 
+  import UiInput from "./UiInput.svelte";
+
   const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
 
   const initialData = {
@@ -85,8 +87,13 @@
     </li>
     {#each initialData.url as item, i (i)}
       <li>
-        <input name="url" value={item} placeholder="url" />
-        <span class="remove" on:click={() => removeItem(i)}>x</span>
+        <UiInput
+          name="url"
+          value={item}
+          placeholder="url"
+          label="url"
+          on:click={() => removeItem(i)}
+        />
       </li>
     {/each}
     <li><button on:click|preventDefault={addItem}>add url</button></li>
@@ -98,11 +105,17 @@
 
 <div class="response">
   {#await promise}
-    <p class="loader">...waiting</p>
+    <p class="loader">
+      <img src="/loader.svg" alt="loading" />
+    </p>
   {:then content}
-    <Header data={content} />
-    <UrlsByMetric data={content} />
-    <MetricsByUrl data={content} />
+    {#if content.error}
+      <p>{content.error}</p>
+    {:else}
+      <Header data={content} />
+      <UrlsByMetric data={content} />
+      <MetricsByUrl data={content} />
+    {/if}
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
@@ -140,6 +153,7 @@
   }
   .loader {
     margin: 50px auto;
+    text-align: center;
   }
   input,
   select,
