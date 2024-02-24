@@ -60,46 +60,53 @@
   const tableHeading = table[0];
 </script>
 
-<table>
-  <tr>
-    {#each tableHeading as cell}
-      <td>{cell}</td>
-    {/each}
-  </tr>
-
-  {#each table.slice(1, table.length) as row}
+<div class="wrapper">
+  <table>
     <tr>
-      {#each row as cell}
-        {#if cell.p75}
-          <td class={cell.rank}>{cell.p75}</td>
-        {:else}
-          <td>
-            <img
-              src={imgIcon(cell.url)}
-              class="icon"
-              width="12"
-              height="12"
-              alt={cell.url}
-            />
-            {#if titleArr.includes(cell.url.split("/"))}
-              <strong title={cell.url}>{cell.url}</strong>
-            {:else}
-              <span title={cell.url}>{cell.url}</span>
-            {/if}
-            <div class="all-good">
-              <div style={"width:" + cell.minimal + "%"}>
-                {cell.minimal}%
-              </div>
-            </div>
-          </td>
-        {/if}
+      {#each tableHeading as cell}
+        <td>{cell}</td>
       {/each}
-      <!-- <td class={metric.rank}>{metric.p75}</td>  -->
     </tr>
-  {/each}
-</table>
+
+    {#each table.slice(1, table.length) as row}
+      <tr>
+        {#each row as cell}
+          {#if cell.p75}
+            <td class={cell.rank}>{cell.p75}</td>
+          {:else}
+            <td>
+              <img
+                src={imgIcon(cell.url)}
+                class="icon"
+                width="12"
+                height="12"
+                alt={cell.url}
+              />
+              {#if titleArr.includes(cell.url.split("/"))}
+                <strong title={cell.url}>{cell.url}</strong>
+              {:else}
+                <span title={cell.url}>{cell.url}</span>
+              {/if}
+              <div class="all-good">
+                <div style={"width:" + cell.minimal + "%"}>
+                  {cell.minimal}%
+                </div>
+              </div>
+            </td>
+          {/if}
+        {/each}
+        <!-- <td class={metric.rank}>{metric.p75}</td>  -->
+      </tr>
+    {/each}
+  </table>
+</div>
 
 <style>
+  .wrapper {
+    max-width: 100%;
+    overflow: auto;
+  }
+
   table {
     width: 100%;
   }

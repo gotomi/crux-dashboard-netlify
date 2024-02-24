@@ -15,11 +15,11 @@
 </script>
 
 <div>
-  <h2>{metricData.name}</h2>
+  <h2 title={metricData.name}>{metric}</h2>
   <p class="legend">
-    🟢 good (&lt; {metricData.range[0]}
-    {unit}) 🟠 needs improvement 🔴 poor (&gt; {metricData.range[1]}
-    {unit})
+    <span>🟢 good (&lt; {metricData.range[0]} {unit}) </span>
+    <span>🟠 needs improvement</span>
+    <span>🔴 poor (&gt; {metricData.range[1]}{unit})</span>
   </p>
 </div>
 
@@ -28,10 +28,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 32px;
   }
   .legend {
     text-align: right;
     padding: 10px 0;
+  }
+
+  .legend span {
+    white-space: nowrap;
   }
 
   @media (max-width: 1022px) {

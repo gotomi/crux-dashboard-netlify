@@ -5,10 +5,9 @@
   export let placeholder: string = "";
 </script>
 
-<label
-  >
+<label>
   <!-- <span>{label}</span> -->
-  <span
+  <span class="input"
     ><input {name} {value} {placeholder} />
     <button class="remove" on:click>x</button></span
   >
@@ -19,6 +18,10 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+  }
+  .input {
+    display: flex;
+    flex-wrap: nowrap;
   }
   input {
     font-size: medium;

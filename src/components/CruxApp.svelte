@@ -97,8 +97,7 @@
       </li>
     {/each}
     <li><button on:click|preventDefault={addItem}>add url</button></li>
-  </ul>
-  <ul>
+
     <li><input type="submit" value="get CrUX data" /></li>
   </ul>
 </form>
@@ -161,9 +160,13 @@
     padding: 4px 8px;
     border: 1px solid #ddd;
   }
-  button,
-  input[type="submit"] {
+  button {
     background-color: #ccc;
+  }
+
+  input[type="submit"] {
+    background-color: #1f1f1f;
+    color: #fafafa;
   }
   input[type="checkbox"] {
     vertical-align: middle;
