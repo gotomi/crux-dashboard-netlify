@@ -24,8 +24,8 @@
   }
 
   function compareByMinimal(a, b) {
-    const y = a[0].minimal;
-    const x = b[0].minimal;
+    const y = Number(a[0].minimal);
+    const x = Number(b[0].minimal);
     if (y > x) return -1;
     if (x < y) return 1;
     return 0;

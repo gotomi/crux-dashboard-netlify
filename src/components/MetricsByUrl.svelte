@@ -3,8 +3,8 @@
   import Metric from "../components/Metric.svelte";
   import Legend from "../components/Legend.svelte";
   function compareByDistribution(a, b) {
-    const x = a.histogram[0];
-    const y = b.histogram[0];
+    const x = Number(a.histogram[0]);
+    const y = Number(b.histogram[0]);
     if (y < x) return -1;
     if (x > y) return 1;
     return 0;
