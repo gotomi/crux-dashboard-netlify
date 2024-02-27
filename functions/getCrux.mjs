@@ -2,6 +2,7 @@ import { getReports } from "kruk";
 import prependHttp from "prepend-http";
 
 function groupByMetricAndSort(data, sortBy = "histogram") {
+  if (!data) return {};
   const byMetric = { CLS: [], FCP: [], LCP: [], FID: [], INP: [], TTFB: [] };
 
   data.forEach((site) => {
@@ -44,6 +45,7 @@ export default async (req, context) => {
 
   const cruxData = await getReports(urls, API_KEY, queryParams);
   const cruxDataByMetric = groupByMetricAndSort(cruxData.metrics);
+
   return Response.json({
     cruxData,
     byMetric: { params: cruxData.params, metrics: cruxDataByMetric },

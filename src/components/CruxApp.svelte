@@ -109,15 +109,15 @@
             <img src="/loader.svg" alt="loading" />
         </p>
     {:then content}
-        {#if content.error}
-            <p>{content.error}</p>
+        {#if content.cruxData.error}
+            <p class="error">{content.cruxData.error}</p>
         {:else}
             <Header data={content.cruxData} />
             <UrlsByMetric data={content.cruxData} />
             <MetricsByUrl data={content.byMetric} />
         {/if}
     {:catch error}
-        <p style="color: red">{error.message}</p>
+        <p class="error">{error.message}</p>
     {/await}
 </div>
 
@@ -150,6 +150,9 @@
     }
     .response {
         min-height: 300px;
+    }
+    .error{
+        color: #ed3800;
     }
     .loader {
         margin: 50px auto;

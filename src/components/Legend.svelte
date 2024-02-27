@@ -15,7 +15,12 @@
 </script>
 
 <div>
-  <h2 title={metricData.name}>{metric}</h2>
+  <h2 title={metricData.name}>
+    <span class="mobile">
+      {metric}
+    </span>
+    <span class="desktop">{metricData.name} </span>
+    </h2>
   <p class="legend">
     <span>🟢 good (&lt; {metricData.range[0]} {unit}) </span>
     <span>🟠 needs improvement</span>
@@ -38,11 +43,24 @@
   .legend span {
     white-space: nowrap;
   }
+  .desktop{
+    display: inline-block;
+  }
+  .mobile{
+    display: none;
+  }
 
   @media (max-width: 1022px) {
     .legend {
       text-align: left;
       font-size: 80%;
     }
+    .desktop{
+      display: none;
+    }
+    .mobile{
+    display: inline-block;
+  }
+
   }
 </style>
