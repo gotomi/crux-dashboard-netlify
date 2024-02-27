@@ -14,36 +14,34 @@ let title = "CrUX Dashboard";
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{title}</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/style/global.css" />
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
-    <link rel="stylesheet" href="/style/global.css" />
-
-    <style>
-      header {
-        margin: 15px 0;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1 class="logo">{title}</h1>
-      </header>
-      <CruxApp client:visible />
-    </main>
-  </body>
+        <style>
+            header {
+                margin: 15px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1 class="logo">{title}</h1>
+            </header>
+            <CruxApp client:visible />
+        </main>
+    </body>
 </html>
 <style>
-  .logo {
-    color: #34a853;
-    display: inline-block;
-    padding: 8px;
-    margin: 0;
-    border-bottom: 4px solid #1f1f1f;
-  }
+    .logo {
+        color: #34a853;
+        display: inline-block;
+        padding: 8px;
+        margin: 0;
+        border-bottom: 4px solid #1f1f1f;
+    }
 </style>
