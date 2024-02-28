@@ -7,41 +7,39 @@ import CruxApp from "../components/CruxApp.svelte";
 // You can write any JavaScript/TypeScript that you'd like here.
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
-let title = "CrUX Dashboard";
+let title = "🚀 CrUX Dashboard";
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>{title}</title>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="/style/global.css" />
-
-        <style>
-            header {
-                margin: 15px 0;
-            }
-        </style>
-    </head>
-    <body>
-        <main>
-            <header>
-                <h1 class="logo">{title}</h1>
-            </header>
-            <CruxApp client:visible />
-        </main>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/style/global.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1 class="logo">{title}</h1>
+        <p>Compare Chrome UX Report field data for multiple origins or URLs</p>
+      </header>
+      <CruxApp client:visible />
+    </main>
+  </body>
 </html>
 <style>
-    .logo {
-        color: #34a853;
-        display: inline-block;
-        padding: 8px;
-        margin: 0;
-        border-bottom: 4px solid #1f1f1f;
-    }
+  header {
+    padding: var(--padding);
+    background-color: #1f1f1f;
+    color: #fafafa;
+    margin: 0;
+  }
+  .logo {
+    display: inline-block;
+    margin: 0;
+  }
 </style>
