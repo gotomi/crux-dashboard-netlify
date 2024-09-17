@@ -3,7 +3,7 @@ import prependHttp from "prepend-http";
 
 function groupByMetricAndSort(data, sortBy = "histogram") {
   if (!data) return {};
-  const byMetric = { CLS: [], FCP: [], LCP: [], FID: [], INP: [], TTFB: [] };
+  const byMetric = { CLS: [], FCP: [], LCP: [],  INP: [], TTFB: [] };
 
   data.forEach((site) => {
     for (const metric in byMetric) {

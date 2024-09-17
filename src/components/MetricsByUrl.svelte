@@ -7,7 +7,7 @@
     }
 </script>
 
-{#each ["FCP", "LCP", "FID", "CLS", "TTFB", "INP"] as metric}
+{#each ["FCP", "LCP",  "CLS", "TTFB", "INP"] as metric}
     <article>
         <Legend {metric} />
         {#each getMetric(data, metric) as p}

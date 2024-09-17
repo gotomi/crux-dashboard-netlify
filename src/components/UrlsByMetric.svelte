@@ -14,7 +14,7 @@
                 url: item.url,
                 minimal: item.minimalGood,
             });
-            ["FCP", "LCP", "FID", "CLS", "TTFB", "INP"].forEach((metric) => {
+            ["FCP", "LCP",  "CLS", "TTFB", "INP"].forEach((metric) => {
                 obj.push({
                     p75: item[metric].p75,
                     rank: item[metric].rank,
@@ -24,7 +24,7 @@
             return obj;
         });
     }
-    const table = [["url", "FCP", "LCP", "FID", "CLS", "TTFB", "INP"]].concat(
+    const table = [["url", "FCP", "LCP",  "CLS", "TTFB", "INP"]].concat(
         getMetric(),
     );
 
