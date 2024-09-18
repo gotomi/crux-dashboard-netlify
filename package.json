@@ -12,18 +12,22 @@
   },
   "devDependencies": {
     "@astrojs/netlify": "^5.5.3",
-    "@astrojs/svelte": "^5.7.0",
-    "astro": "^4.15.6",
-    "kruk": "0.4.2",
+    "@astrojs/svelte": "^5.7.1",
+    "@eslint/js": "^9.10.0",
+    "astro": "^4.15.7",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1"
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
+    "kruk": "0.4.2",
+    "typescript-eslint": "^8.6.0"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:gotomi/crux-netlify.git"
   },
   "dependencies": {
-    "prepend-http": "^4.0.0"
+    "prepend-http": "^4.0.0",
+    "svelte": "^5.0.0-next.247"
   }
 }

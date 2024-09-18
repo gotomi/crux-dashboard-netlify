@@ -1,5 +1,5 @@
 <script>
-    export let data;
+    let {data}= $props();
     import Metric from "../components/Metric.svelte";
     import Legend from "../components/Legend.svelte";
     function getMetric(data, metric) {
@@ -9,8 +9,9 @@
 
 {#each ["FCP", "LCP",  "CLS", "TTFB", "INP"] as metric}
     <article>
-        <Legend {metric} />
-        {#each getMetric(data, metric) as p}
+        {metric}
+     <Legend {metric} />
+           {#each getMetric(data, metric) as p}
             <Metric post={p} />
         {/each}
     </article>

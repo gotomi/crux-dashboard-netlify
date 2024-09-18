@@ -1,5 +1,5 @@
 <script>
-    export let data;
+    let {data} = $props();
     function imgIcon(url) {
         return (
             "https://www.google.com/s2/favicons?sz=16&domain_url=" +
@@ -8,6 +8,7 @@
     }
 
     function getMetric() {
+        if (!data.metrics) return [];
         return data.metrics.map((item) => {
             let obj = [];
             obj.push({
@@ -33,13 +34,15 @@
 
 <div class="wrapper">
     <table>
+        <thead>
         <tr>
             {#each tableHeading as cell}
                 <td>{cell}</td>
             {/each}
         </tr>
-
+        </thead>     <tbody>
         {#each table.slice(1, table.length) as row}
+
             <tr>
                 {#each row as cell}
                     {#if cell.p75}
@@ -67,6 +70,7 @@
                 <!-- <td class={metric.rank}>{metric.p75}</td>  -->
             </tr>
         {/each}
+        </tbody>
     </table>
 </div>
 
@@ -79,7 +83,7 @@
     table {
         width: 100%;
     }
-    tr:first-child td {
+    thead  td {
         background: #333;
         color: #fff;
         font-weight: bold;
