@@ -8,22 +8,23 @@
 
   const formFactorValues = ["ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"];
 
-  const initialData = {
+  let initialData = $state({
     url: [""],
     checkOrigin: true,
     formFactor: "PHONE",
-  };
+  });
 
-  let promise = Promise.reject(new Error(""));
+  let promise = $state(Promise.reject(new Error("")));
 
-  function addItem() {
+  function addItem(e) {
+    e.preventDefault();
     const len = initialData.url.length;
     initialData.url[len] = "";
   }
 
   function removeItem(i) {
     initialData.url.splice(i, 1);
-    initialData.url = initialData.url;
+    initialData.url = [...initialData.url];
   }
 
   onMount(async () => {
@@ -58,12 +59,13 @@
   }
 
   function onSubmit(e) {
+    e.preventDefault();
     const data = new URLSearchParams(new FormData(e.target));
     window.location.href = "/?" + data.toString();
   }
 </script>
 
-<form on:submit|preventDefault={onSubmit}>
+<form onsubmit={onSubmit}>
   <ul>
     <li>
       <label
@@ -92,11 +94,11 @@
           value={item}
           placeholder="url"
           label="url"
-          on:click={() => removeItem(i)}
+          remove={removeItem(i)}
         />
       </li>
     {/each}
-    <li><button on:click|preventDefault={addItem}>add url</button></li>
+    <li><button onclick={addItem}>add url</button></li>
 
     <li><input type="submit" value="get CrUX data" /></li>
   </ul>
@@ -182,8 +184,5 @@
     vertical-align: middle;
     margin-right: 4px;
   }
-  .remove {
-    cursor: pointer;
-    font-weight: bold;
-  }
+
 </style>

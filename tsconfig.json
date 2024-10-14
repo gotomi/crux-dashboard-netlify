@@ -1,3 +1,8 @@
 {
-  "moduleResolution": "node"
+  "compileOptions": {
+    "moduleResolution": "node"
+  },
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "build", "dist", "public", "_src"]
 }

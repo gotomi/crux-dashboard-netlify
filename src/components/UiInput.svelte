@@ -1,15 +1,12 @@
-<script lang="ts">
-  export let label: string;
-  export let name: string;
-  export let value: string;
-  export let placeholder: string = "";
+<script>
+  let {label, name, value, placeholder ='' , remove} = $props()
 </script>
 
 <label>
   <!-- <span>{label}</span> -->
   <span class="input"
     ><input {name} {value} {placeholder} />
-    <button class="remove" on:click>x</button></span
+    <button class="remove" onclick={remove}>x</button></span
   >
 </label>
 
@@ -28,4 +25,5 @@
     font-size: medium;
     padding: 2px 4px;
   }
+
 </style>
