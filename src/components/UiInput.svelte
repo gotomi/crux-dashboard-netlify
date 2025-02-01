@@ -21,9 +21,10 @@
     flex-wrap: nowrap;
     gap: 4px;
   }
-  input {
-    font-size: medium;
-    padding: 2px 4px;
+
+  .remove{
+      background: #ed380040;
+
   }
 
 </style>

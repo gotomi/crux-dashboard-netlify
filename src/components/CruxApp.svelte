@@ -98,7 +98,7 @@
         />
       </li>
     {/each}
-    <li><button onclick={addItem}>add url</button></li>
+    <li><button class="add" onclick={addItem}>add url</button></li>
 
     <li><input type="submit" value="get CrUX data" /></li>
   </ul>
@@ -141,48 +141,5 @@
     gap: 8px;
   }
 
-  form {
-    padding: var(--padding);
-    padding-block: 16px;
-    margin: 0;
-    background-color: #eee;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px #ddd solid;
-  }
-  .response {
-    min-height: 300px;
-    padding: var(--padding);
-    margin: 32px 0 0 0;
-  }
-  .error {
-    color: #ed3800;
-  }
-  .loader {
-    margin: 50px auto;
-    text-align: center;
-  }
-  input,
-  select,
-  button {
-    padding: 4px 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    appearance: auto;
-    font-size: inherit;
-  }
-  button {
-    background-color: #fff;
-  }
-
-  input[type="submit"] {
-    background-color: #1f1f1f;
-    color: #fafafa;
-  }
-  input[type="checkbox"] {
-    vertical-align: middle;
-    margin-right: 4px;
-  }
 
 </style>
