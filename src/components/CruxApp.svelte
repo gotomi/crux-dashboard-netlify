@@ -21,10 +21,11 @@
     const len = initialData.url.length;
     initialData.url[len] = "";
   }
-
   function removeItem(i) {
-    initialData.url.splice(i, 1);
-    initialData.url = [...initialData.url];
+    return function() {
+      initialData.url.splice(i, 1);
+      initialData.url = [...initialData.url];
+    }
   }
 
   onMount(async () => {
