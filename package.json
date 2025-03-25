@@ -10,9 +10,9 @@
   },
   "devDependencies": {
     "@astrojs/netlify": "^6.2.3",
-    "@astrojs/svelte": "^7.0.6",
-    "astro": "^5.5.2",
-    "kruk": "0.4.6"
+    "@astrojs/svelte": "^7.0.7",
+    "astro": "^5.5.4",
+    "kruk": "0.4.7"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "prepend-http": "^4.0.0",
-    "svelte": "^5.23.0"
+    "svelte": "^5.25.3"
   }
 }
