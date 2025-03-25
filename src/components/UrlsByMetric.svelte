@@ -1,5 +1,5 @@
 <script>
-    let {data} = $props();
+    let { data } = $props();
     function imgIcon(url) {
         return (
             "https://www.google.com/s2/favicons?sz=16&domain_url=" +
@@ -15,7 +15,7 @@
                 url: item.url,
                 minimal: item.minimalGood,
             });
-            ["FCP", "LCP",  "CLS", "TTFB", "INP", "RTT"].forEach((metric) => {
+            ["FCP", "LCP", "CLS", "TTFB", "INP"].forEach((metric) => {
                 obj.push({
                     p75: item[metric].p75,
                     rank: item[metric].rank,
@@ -25,7 +25,7 @@
             return obj;
         });
     }
-    const table = [["url", "FCP", "LCP",  "CLS", "TTFB", "INP", "RTT"]].concat(
+    const table = [["url", "FCP", "LCP", "CLS", "TTFB", "INP"]].concat(
         getMetric(),
     );
 
@@ -35,41 +35,41 @@
 <div class="wrapper">
     <table>
         <thead>
-        <tr>
-            {#each tableHeading as cell}
-                <td>{cell}</td>
-            {/each}
-        </tr>
-        </thead>     <tbody>
-        {#each table.slice(1, table.length) as row}
-
             <tr>
-                {#each row as cell}
-                    {#if cell.p75}
-                        <td class={cell.rank}>{cell.p75}</td>
-                    {:else}
-                        <td>
-                            <div class="url">
-                                <img
-                                    src={imgIcon(cell.url)}
-                                    class="icon"
-                                    width="12"
-                                    height="12"
-                                    alt={cell.url}
-                                />
-                                <span title={cell.url}>{cell.url}</span>
-                            </div>
-                            <div class="all-good">
-                                <div style={"width:" + cell.minimal + "%"}>
-                                    {cell.minimal}%
-                                </div>
-                            </div>
-                        </td>
-                    {/if}
+                {#each tableHeading as cell}
+                    <td>{cell}</td>
                 {/each}
-                <!-- <td class={metric.rank}>{metric.p75}</td>  -->
             </tr>
-        {/each}
+        </thead>
+        <tbody>
+            {#each table.slice(1, table.length) as row}
+                <tr>
+                    {#each row as cell}
+                        {#if cell.p75}
+                            <td class={cell.rank}>{cell.p75}</td>
+                        {:else}
+                            <td>
+                                <div class="url">
+                                    <img
+                                        src={imgIcon(cell.url)}
+                                        class="icon"
+                                        width="12"
+                                        height="12"
+                                        alt={cell.url}
+                                    />
+                                    <span title={cell.url}>{cell.url}</span>
+                                </div>
+                                <div class="all-good">
+                                    <div style={"width:" + cell.minimal + "%"}>
+                                        {cell.minimal}%
+                                    </div>
+                                </div>
+                            </td>
+                        {/if}
+                    {/each}
+                    <!-- <td class={metric.rank}>{metric.p75}</td>  -->
+                </tr>
+            {/each}
         </tbody>
     </table>
 </div>
@@ -83,7 +83,7 @@
     table {
         width: 100%;
     }
-    thead  td {
+    thead td {
         background: #333;
         color: #fff;
         font-weight: bold;
