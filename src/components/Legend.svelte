@@ -10,8 +10,8 @@
         RTT: { range: [75, 275], name: "Round Trip Time" },
     };
 
-    const metricData = metricsMap[metric];
-    const unit = metric === "CLS" ? "" : "ms";
+    const metricData = $derived(metricsMap[metric]);
+    const unit = $derived(metric === "CLS" ? "" : "ms");
     const names = {
         metrics: {
             good: "Good",
@@ -25,55 +25,193 @@
         },
     };
 
-    const rangeNames = metric === "RTT" ? names.rtt : names.metrics;
+    const rangeNames = $derived(metric === "RTT" ? names.rtt : names.metrics);
 </script>
 
-<div>
-    <h2 title={metricData.name}>
-        <span class="mobile">
-            {metric}
-        </span>
-        <span class="desktop">{metricData.name} </span>
-    </h2>
-    <p class="legend">
-        <span>🟢 {rangeNames.good} (&lt; {metricData.range[0]} {unit}) </span>
-        <span>🟠 {rangeNames.medium}</span>
-        <span>🔴 {rangeNames.poor} (&gt; {metricData.range[1]}{unit})</span>
-    </p>
+<div class="legend-container">
+    <div class="metric-header">
+        <h2 title={metricData.name}>
+            <span class="mobile">{metric}</span>
+            <span class="desktop">{metricData.name}</span>
+        </h2>
+        <div
+            class="metric-badge"
+            class:good={metric === "CLS" || metric === "INP"}
+            class:time={metric !== "CLS"}
+        >
+            {unit}
+        </div>
+    </div>
+    <div class="legend-content">
+        <div class="legend-item good">
+            <div class="indicator"></div>
+            <span class="legend-text"
+                >{rangeNames.good} &lt; {metricData.range[0]} {unit}</span
+            >
+        </div>
+        <div class="legend-item average">
+            <div class="indicator"></div>
+            <span class="legend-text"
+                >{rangeNames.medium}
+                {metricData.range[0]} - {metricData.range[1]}
+                {unit}</span
+            >
+        </div>
+        <div class="legend-item poor">
+            <div class="indicator"></div>
+            <span class="legend-text"
+                >{rangeNames.poor} &gt; {metricData.range[1]} {unit}</span
+            >
+        </div>
+    </div>
 </div>
 
 <style>
-    div {
+    .legend-container {
+        background: white;
+        border-radius: 4px;
+        padding: 20px;
+        margin: 16px 0;
+    }
+
+    .metric-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 32px;
-    }
-    .legend {
-        text-align: right;
-        padding: 10px 0;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 12px;
     }
 
-    .legend span {
+    h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .metric-badge {
+        background: #e9ecef;
+        color: #6c757d;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    .metric-badge.good {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .metric-badge.time {
+        background: #d1ecf1;
+        color: #0c5460;
+    }
+
+    .legend-content {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+    }
+
+    .legend-item:hover {
+        background-color: #e9ecef;
+        transform: translateY(-1px);
+    }
+
+    .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+    }
+
+    .legend-item.good .indicator {
+        background-color: #28a745;
+    }
+
+    .legend-item.average .indicator {
+        background-color: #ffc107;
+    }
+
+    .legend-item.poor .indicator {
+        background-color: #dc3545;
+    }
+
+    .legend-text {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #2c3e50;
         white-space: nowrap;
     }
+
     .desktop {
         display: inline-block;
     }
+
     .mobile {
         display: none;
     }
 
-    @media (max-width: 1022px) {
-        .legend {
-            text-align: left;
-            font-size: 80%;
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .legend-container {
+            padding: 16px;
+            margin: 12px 0;
         }
+
+        .metric-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+        }
+
+        .legend-content {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legend-item {
+            padding: 8px 12px;
+        }
+
+        .legend-text {
+            font-size: 0.8rem;
+        }
+
         .desktop {
             display: none;
         }
+
         .mobile {
             display: inline-block;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .legend-container {
+            padding: 12px;
+        }
+
+        .legend-item {
+            padding: 6px 10px;
         }
     }
 </style>

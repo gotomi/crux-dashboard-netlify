@@ -1,116 +1,240 @@
 <script>
-  let {post} = $props();
-  import UrlWithIcon from "./UrlWithIcon.svelte";
+    let { post } = $props();
+    import UrlWithIcon from "./UrlWithIcon.svelte";
 
-  const rank = ["good", "average", "poor"];
+    const rank = ["good", "average", "poor"];
 
-  const rankMap = {
-    good: " 🟢 ",
-    average: " 🟠 ",
-    poor: " 🔴 ",
-  };
+    const rankMap = {
+        good: " 🟢 ",
+        average: " 🟠 ",
+        poor: " 🔴 ",
+    };
 </script>
 
-<div class="row">
-  <h3>
-    <UrlWithIcon url={post.url} />
-    <span class="p75">&nbsp;{post.p75}&nbsp; {rankMap[post.rank] || ""}</span>
-  </h3>
-  {#if rankMap[post.rank]}
-    <ul>
-      {#each post.histogram as item, index}
-        {#if item > 0}
-          <li class={rank[index]} style={"flex:" + item}>
-            <span>{item}%</span>
-          </li>
+<div class="metric-card">
+    <div class="metric-row">
+        <div class="url-info">
+            <UrlWithIcon url={post.url} />
+        </div>
+
+        {#if rankMap[post.rank]}
+            <div class="metric-content">
+                <div class="metric-value">
+                    <span class="value">{post.p75}</span>
+                    <span class="rank-indicator">{rankMap[post.rank]}</span>
+                </div>
+                <div class="histogram-bars">
+                    {#each post.histogram as item, index}
+                        {#if item > 0}
+                            <div
+                                class="histogram-bar {rank[index]}"
+                                style={"flex:" + item}
+                                title={`${rank[index]}: ${item}%`}
+                            >
+                                <span class="bar-label">{item}%</span>
+                            </div>
+                        {/if}
+                    {/each}
+                </div>
+            </div>
+        {:else}
+            <div class="no-data">
+                <span class="no-data-text">No data</span>
+            </div>
         {/if}
-      {/each}
-    </ul>
-  {:else}
-    no data
-  {/if}
+    </div>
 </div>
 
 <style>
-  h3 {
-    font-weight: 400;
-    font-size: inherit;
-    padding: 0 15px 0 0;
-    text-align: right;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    align-self: end;
-    justify-content: flex-start;
-    align-items: baseline;
-    margin: 3px 0;
-  }
-
-  .row {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 2.18fr;
-  }
-
-  @media (max-width: 1022px) {
-    .row {
-      display: block;
+    .metric-card {
+        background: white;
+        border-radius: 0;
+        padding: 4px 16px;
+        margin-bottom: 8px;
+        border-left: 3px solid #e9ecef;
+        transition: all 0.2s ease;
     }
-  }
 
-  .row:hover h3 {
-    color: tomato;
-  }
+    .metric-card.good {
+        border-left-color: var(--success);
+    }
 
-  ul {
-    display: flex;
-  }
-  ul,
-  li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  li {
-    padding: 5px;
-    text-align: right;
-    margin: 3px 0;
-    text-indent: -999px;
-    overflow: hidden;
-  }
+    .metric-card.average {
+        border-left-color: var(--warning);
+    }
 
-  .row:hover li:hover {
-    overflow: initial;
-  }
+    .metric-card.poor {
+        border-left-color: var(--danger);
+    }
 
-  .row:hover li:hover span {
-    text-shadow: 1px 1px #000;
-    background: #000;
-    color: #fff;
-    padding: 3px;
-    border-radius: 3px;
-  }
+    .metric-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
 
-  .p75 {
-    width: 60px;
-  }
+    .url-info {
+        flex: 0 0 auto;
+        min-width: 180px;
+        max-width: 300px;
+    }
 
-  /* li:first-child{
-    border-radius: 5px  0 0 5px;
-} */
-  li:last-child {
-    border-radius: 0 5px 5px 0;
-  }
+    .metric-content {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex: 1;
+        min-width: 0;
+    }
 
-  .good {
-    background-color: #34a853;
-  }
+    .metric-value {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 2px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
 
-  .average {
-    background-color: #fbbc04;
-  }
+    .metric-value.good {
+        background: rgba(40, 167, 69, 0.1);
+        color: var(--success);
+    }
 
-  .poor {
-    background-color: #ea4335;
-    color: #fff;
-  }
+    .metric-value.average {
+        background: rgba(255, 193, 7, 0.1);
+        color: var(--warning);
+    }
+
+    .metric-value.poor {
+        background: rgba(220, 53, 69, 0.1);
+        color: var(--danger);
+    }
+
+    .value {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .rank-indicator {
+        font-size: 0.9rem;
+    }
+
+    .histogram-bars {
+        display: flex;
+        height: 24px;
+        border-radius: 2px;
+        overflow: hidden;
+        flex: 1;
+        min-width: 120px;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .histogram-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 0.75rem;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        position: relative;
+        min-width: 25px;
+    }
+
+    .histogram-bar:hover {
+        filter: brightness(1.1);
+        z-index: 1;
+    }
+
+    .histogram-bar.good {
+        background: #28a745;
+    }
+
+    .histogram-bar.average {
+        background: #ffc107;
+    }
+
+    .histogram-bar.poor {
+        background: #dc3545;
+    }
+
+    .bar-label {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .no-data {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 16px;
+        background: var(--light);
+        border-radius: 2px;
+        color: var(--gray);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .metric-card {
+            padding: 10px 12px;
+            margin-bottom: 6px;
+        }
+
+        .metric-row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+
+        .url-info {
+            min-width: auto;
+            max-width: none;
+        }
+
+        .metric-content {
+            justify-content: space-between;
+        }
+
+        .histogram-bars {
+            height: 20px;
+            min-width: 100px;
+        }
+
+        .metric-value {
+            font-size: 0.875rem;
+            padding: 4px 8px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .metric-card {
+            padding: 8px 10px;
+        }
+
+        .metric-row {
+            gap: 8px;
+        }
+
+        .metric-content {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .histogram-bars {
+            height: 18px;
+            min-width: 80px;
+        }
+
+        .histogram-bar {
+            font-size: 0.7rem;
+            min-width: 20px;
+        }
+    }
 </style>

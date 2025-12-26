@@ -1,8 +1,6 @@
 <script>
   let {url} = $props();
-  const icon =
-    "https://www.google.com/s2/favicons?sz=16&domain_url=" +
-    url.replace("https://", "");
+  const icon = $derived("https://www.google.com/s2/favicons?sz=16&domain_url=" + url.replace("https://", ""));
 </script>
 
 <img src={icon} class="icon" width="12" height="12" alt={url} />
