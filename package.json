@@ -6,12 +6,14 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "netlify:dev": "netlify dev",
+    "functions:serve": "netlify functions:serve"
   },
   "devDependencies": {
     "@astrojs/netlify": "^6.6.3",
-    "@astrojs/svelte": "^7.2.3",
-    "astro": "^5.16.5",
+    "@astrojs/svelte": "^7.2.4",
+    "astro": "^5.16.6",
     "kruk": "0.4.13"
   },
   "repository": {
@@ -20,6 +22,6 @@
   },
   "dependencies": {
     "prepend-http": "^4.0.0",
-    "svelte": "^5.45.10"
+    "svelte": "^5.46.1"
   }
 }
