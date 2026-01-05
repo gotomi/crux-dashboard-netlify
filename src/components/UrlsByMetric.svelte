@@ -60,11 +60,22 @@
                                                 height="16"
                                                 alt={cell.url}
                                             />
-                                            <span title={cell.url} class="url-text">{cell.url}</span>
+                                            <span
+                                                title={cell.url}
+                                                class="url-text"
+                                                >{cell.url}</span
+                                            >
                                         </div>
                                         <div class="performance-bar">
-                                            <div class="bar-fill" style={"width:" + cell.minimal + "%"}></div>
-                                            <span class="bar-text">{cell.minimal}%</span>
+                                            <div
+                                                class="bar-fill"
+                                                style={"width:" +
+                                                    cell.minimal +
+                                                    "%"}
+                                            ></div>
+                                            <span class="bar-text"
+                                                >{cell.minimal}%</span
+                                            >
                                         </div>
                                     </td>
                                 {/if}
@@ -88,17 +99,25 @@
                         height="20"
                         alt={row[0].url}
                     />
-                    <span class="url-text" title={row[0].url}>{row[0].url}</span>
+                    <span class="url-text" title={row[0].url}>{row[0].url}</span
+                    >
                 </div>
                 <div class="performance-bar">
-                    <div class="bar-fill" style={"width:" + row[0].minimal + "%"}></div>
+                    <div
+                        class="bar-fill"
+                        style={"width:" + row[0].minimal + "%"}
+                    ></div>
                     <span class="bar-text">{row[0].minimal}% Good</span>
                 </div>
                 <div class="metrics-grid">
                     {#each row.slice(1) as metric, metricIndex}
                         <div class="metric-item">
-                            <span class="metric-name">{tableHeading[metricIndex + 1]}</span>
-                            <span class="metric-value {metric.rank}">{metric.p75}</span>
+                            <span class="metric-name"
+                                >{tableHeading[metricIndex + 1]}</span
+                            >
+                            <span class="metric-value {metric.rank}"
+                                >{metric.p75}</span
+                            >
                         </div>
                     {/each}
                 </div>
@@ -121,7 +140,7 @@
     .table-wrapper {
         overflow-x: auto;
         border-radius: 3px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     table {
@@ -206,17 +225,18 @@
 
     /* Metric value colors */
     .good {
-        color: #28a745;
+        background: #2ead4b56;
         font-weight: 600;
     }
 
     .average {
-        color: #ffc107;
+        background: #ffc10790;
         font-weight: 600;
     }
 
     .poor {
-        color: #dc3545;
+        background: #dc3545;
+        color: #fff;
         font-weight: 600;
     }
 
@@ -230,13 +250,15 @@
         border-radius: 4px;
         padding: 16px;
         margin-bottom: 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
     }
 
     .metric-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     }
 
     .card-header {

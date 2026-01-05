@@ -34,13 +34,15 @@
             <span class="mobile">{metric}</span>
             <span class="desktop">{metricData.name}</span>
         </h2>
-        <div
-            class="metric-badge"
-            class:good={metric === "CLS" || metric === "INP"}
-            class:time={metric !== "CLS"}
-        >
-            {unit}
-        </div>
+        {#if unit}
+            <div
+                class="metric-badge"
+                class:good={metric === "CLS" || metric === "INP"}
+                class:time={metric !== "CLS"}
+            >
+                {unit}
+            </div>
+        {/if}
     </div>
     <div class="legend-content">
         <div class="legend-item good">
@@ -97,7 +99,6 @@
         border-radius: 6px;
         font-size: 0.875rem;
         font-weight: 500;
-        text-transform: uppercase;
     }
 
     .metric-badge.good {

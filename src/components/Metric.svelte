@@ -154,17 +154,19 @@
 
     .histogram-bar.good {
         background: #28a745;
+        color: #000;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
     }
 
     .histogram-bar.average {
         background: #ffc107;
+        color: #000;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
     }
 
     .histogram-bar.poor {
         background: #dc3545;
-    }
-
-    .bar-label {
+        color: #fff;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
