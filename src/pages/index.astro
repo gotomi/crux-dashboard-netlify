@@ -2,6 +2,7 @@
 // Component Imports
 // You can import components from any supported Framework here!
 import CruxApp from "../components/CruxApp.svelte";
+import packageInfo from "../../package.json";
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -14,32 +15,41 @@ let title = "🚀 CrUX Dashboard";
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/style/global.css" />
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1 class="logo">{title}</h1>
-        <p>Compare Chrome UX Report field data for multiple origins or URLs</p>
-      </header>
-      <CruxApp client:visible />
-    </main>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{title}</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/style/global.css" />
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1 class="logo">{title}</h1>
+
+                <p>
+                    Compare Chrome UX Report field data for multiple origins or
+                    URLs
+                </p>
+            </header>
+            <CruxApp client:visible />
+            <footer>v.{packageInfo.version}</footer>
+        </main>
+    </body>
 </html>
 <style>
-  header {
-    padding: var(--padding);
-    background-color: #1f1f1f;
-    color: #fafafa;
-    margin: 0;
-  }
-  .logo {
-    display: inline-block;
-    margin: 0;
-  }
+    header {
+        padding: var(--padding);
+        background-color: #1f1f1f;
+        color: #fafafa;
+        margin: 0;
+    }
+    footer {
+        text-align: center;
+        display: block;
+    }
+    .logo {
+        display: inline-block;
+        margin: 0;
+    }
 </style>

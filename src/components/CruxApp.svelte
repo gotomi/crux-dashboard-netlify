@@ -61,11 +61,10 @@
     });
 
     async function getCrux(data) {
-        const res = await fetch("/.netlify/functions/getCrux", {
+        const res = await fetch("/api/getCrux", {
             method: "POST",
             headers: {
                 Accept: "application/json",
-                "Content-Type": "application/json",
             },
             body: data,
         });
