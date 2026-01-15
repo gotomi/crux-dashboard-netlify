@@ -6,16 +6,13 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "netlify:dev": "netlify dev",
-    "functions:serve": "netlify functions:serve"
+    "preview": "astro preview"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:gotomi/crux-netlify.git"
   },
   "dependencies": {
-    "netlify-cli": "^23.13.3",
     "prepend-http": "^4.0.0",
     "svelte": "^5.46.4",
     "@astrojs/netlify": "^7.0.0-beta.5",
