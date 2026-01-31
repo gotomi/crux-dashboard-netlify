@@ -19,6 +19,6 @@
     "astro": "^6.0.0-beta.1",
     "kruk": "0.4.13",
     "prepend-http": "^4.0.0",
-    "svelte": "^5.47.1"
+    "svelte": "^5.49.1"
   }
 }
