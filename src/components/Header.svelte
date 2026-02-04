@@ -10,6 +10,6 @@
 
 <p>
 
-  Device: <strong> {!!params.formFactor ? params.formFactor : 'all'}</strong>
+  <strong> {!!params.formFactor ? params.formFactor : 'ALL DEVICES'}</strong>
   🌐 <strong>{urlType}</strong> 📅 {firstDay} - {lastDay}
 </p>

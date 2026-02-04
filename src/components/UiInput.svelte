@@ -165,11 +165,7 @@
         line-height: 1;
     }
 
-    .input-help {
-        font-size: 0.75rem;
-        color: #6c757d;
-        margin-top: 2px;
-    }
+
 
     /* Responsive styles */
     @media (max-width: 768px) {
