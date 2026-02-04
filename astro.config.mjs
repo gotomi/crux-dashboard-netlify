@@ -1,8 +1,9 @@
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
-import node from "@astrojs/node";
+import netlify from "@astrojs/netlify";
 
 export default defineConfig({
-  integrations: [svelte(), node({ mode: "standalone" })],
+  integrations: [svelte()],
+  adapter: netlify(),
   output: "server",
 });
