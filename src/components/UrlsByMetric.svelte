@@ -1,5 +1,6 @@
 <script>
     let { data } = $props();
+
     function imgIcon(url) {
         return (
             "https://www.google.com/s2/favicons?sz=16&domain_url=" +
@@ -40,7 +41,13 @@
                 <thead>
                     <tr>
                         {#each tableHeading as cell}
-                            <th>{cell}</th>
+                            <th
+                                >{cell === "url"
+                                    ? data.params.origin
+                                        ? "Origin"
+                                        : "URL"
+                                    : cell}</th
+                            >
                         {/each}
                     </tr>
                 </thead>
