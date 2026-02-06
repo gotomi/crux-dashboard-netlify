@@ -2,7 +2,6 @@
 import CruxApp from "../components/CruxApp.svelte";
 import * as packageInfo from "../../package.json";
 
-
 let title = "🚀 CrUX Dashboard";
 ---
 
@@ -25,7 +24,11 @@ let title = "🚀 CrUX Dashboard";
                 </p>
             </header>
             <CruxApp client:visible />
-            <footer>v.{packageInfo.version}</footer>
+            <footer>
+                Crux Dashboard v.{packageInfo.version} - created by <a
+                    href="https://gotomi.info">gotomi.info</a
+                > with data from the Chrome UX Report
+            </footer>
         </main>
     </body>
 </html>
