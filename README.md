@@ -2,7 +2,7 @@
 
 A web-based dashboard for comparing Chrome UX Report (CrUX) performance data across multiple origins or URLs. Built with [Astro](https://astro.build), [Svelte](https://svelte.dev).
 
-**[View Live Dashboard](https://crux-dashboard.netlify.app)**
+**Dashboard: [crux.gotomi.info](https://crux.gotomi.info)**
 
 ## Overview
 
