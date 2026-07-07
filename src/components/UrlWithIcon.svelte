@@ -8,23 +8,31 @@ const icon = $derived(
 const displayUrl = $derived(url.replace(/^https?:\/\//, ""));
 </script>
 
-<img src={icon} class="icon" width="12" height="12" alt="Favicon for {displayUrl}" />
-
-<span title={url}>{url}</span>
+<span class="url-wrapper" title={url}>
+    <img src={icon} class="icon" width="12" height="12" alt="Favicon for {displayUrl}" />
+    <span class="url-text">{url}</span>
+</span>
 
 <style>
-    .icon {
-        max-width: 12px;
-        margin: 0 3px 0 0;
+    .url-wrapper {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 200px;
+        gap: 4px;
+        margin-right: 10px;
     }
 
-    span {
-        display: inline-block;
-        width: 200px;
+    .icon {
+        width: 12px;
+        height: 12px;
+        flex-shrink: 0;
+    }
+
+    .url-text {
         white-space: nowrap;
         overflow: hidden;
-        text-align: right;
-        margin-right: 10px;
         text-overflow: ellipsis;
+        text-align: right;
     }
 </style>
