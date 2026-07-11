@@ -1,6 +1,7 @@
 ---
-import CruxApp from "../components/CruxApp.svelte";
 import * as packageInfo from "../../package.json";
+import CruxApp from "../components/CruxApp.svelte";
+import SavedQueries from "../components/SavedQueries.svelte";
 
 let title = "🚀 CrUX Compare";
 ---
@@ -24,6 +25,7 @@ let title = "🚀 CrUX Compare";
                 </p>
             </header>
             <CruxApp client:visible />
+            <SavedQueries client:visible />
             <footer>
                 Crux Compare v.{packageInfo.version} - created by <a
                     href="https://gotomi.info">gotomi.info</a
