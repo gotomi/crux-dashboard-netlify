@@ -1,6 +1,6 @@
 <script>
 let { data } = $props();
-import { TABLE_METRIC_KEYS } from "../lib/crux";
+import { TABLE_METRIC_KEYS, CORE_WEB_VITALS } from "../lib/crux";
 
 function imgIcon(url) {
 	return (
@@ -40,7 +40,7 @@ const tableHeading = $derived(table[0]);
                 <thead>
                     <tr>
                         {#each tableHeading as cell}
-                            <th>
+                            <th class:core-vital={CORE_WEB_VITALS.includes(cell)}>
                                 {cell === 'url'
                                     ? data.params.origin
                                         ? 'Origin'
@@ -110,8 +110,12 @@ const tableHeading = $derived(table[0]);
                 </div>
                 <div class="metrics-grid">
                     {#each row.slice(1) as metric, metricIndex}
+                        {@const metricKey = tableHeading[metricIndex + 1]}
                         <div class="metric-item">
-                            <span class="metric-name">{tableHeading[metricIndex + 1]}</span>
+                            <span
+                                class="metric-name"
+                                class:core-vital={CORE_WEB_VITALS.includes(metricKey)}
+                            >{metricKey}</span>
                             <span class="metric-value {metric.rank}">{metric.p75}</span>
                         </div>
                     {/each}
@@ -153,6 +157,14 @@ const tableHeading = $derived(table[0]);
         position: sticky;
         top: 0;
         z-index: 10;
+    }
+
+    thead th.core-vital {
+        font-weight: 800;
+        font-size: 1.05em;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #ffc107;
     }
 
     tbody tr {
@@ -290,6 +302,13 @@ const tableHeading = $derived(table[0]);
         color: #6c757d;
         margin-bottom: 4px;
         text-align: center;
+    }
+
+    .metric-name.core-vital {
+        font-weight: 800;
+        color: #2c3e50;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .metric-value {

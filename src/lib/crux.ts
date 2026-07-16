@@ -2,21 +2,23 @@ import prependHttp from "prepend-http";
 
 export type MetricKey = "CLS" | "FCP" | "LCP" | "INP" | "TTFB" | "RTT";
 
+export const CORE_WEB_VITALS: MetricKey[] = ["LCP", "CLS", "INP"];
+
 export const METRIC_KEYS: MetricKey[] = [
-	"CLS",
-	"FCP",
 	"LCP",
+	"CLS",
 	"INP",
 	"TTFB",
+	"FCP",
 	"RTT",
 ];
 
 export const TABLE_METRIC_KEYS: MetricKey[] = [
-	"FCP",
 	"LCP",
 	"CLS",
-	"TTFB",
 	"INP",
+	"TTFB",
+	"FCP",
 ];
 
 export const FORM_FACTORS = [
