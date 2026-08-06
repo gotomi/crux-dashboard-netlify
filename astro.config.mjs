@@ -5,6 +5,6 @@ import deno from "@deno/astro-adapter";
 
 export default defineConfig({
   integrations: [svelte()],
-  adapter: deno(),
+  adapter: deno({ port: 8085, hostname: "0.0.0.0", start: true }),
   output: "server",
 });
