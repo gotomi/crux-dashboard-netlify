@@ -192,14 +192,12 @@ function handleBlur(e) {
 
     @media (max-width: 768px) {
         .input-wrapper {
-            flex-direction: column;
             align-items: stretch;
             gap: 8px;
         }
 
         .remove-btn {
             align-self: flex-end;
-            min-width: 80px;
         }
 
         .text-input {
@@ -218,7 +216,6 @@ function handleBlur(e) {
         }
 
         .remove-btn {
-            min-width: 100%;
             padding: 10px;
         }
     }

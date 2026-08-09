@@ -332,7 +332,7 @@ const tableHeading = $derived(table[0]);
 
     @media (max-width: 480px) {
         .metrics-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
         }
     }
 </style>

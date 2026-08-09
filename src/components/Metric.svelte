@@ -232,6 +232,7 @@ const rankMap = {
         .histogram-bars {
             height: 18px;
             min-width: 80px;
+            width: 100%;
         }
 
         .histogram-bar {
